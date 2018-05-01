@@ -70,12 +70,14 @@ public final class BehaviouralTestEmbedder extends ConfigurableEmbedder {
 
     public BehaviouralTestEmbedder withStory(String aWildcardStoryFilename) {
         wildcardStoryFilename = aWildcardStoryFilename;
+        System.out.println("wildcardStoryFilename::::"+wildcardStoryFilename);
         return this;
     }
 
     public BehaviouralTestEmbedder usingStepsFrom(Object... stepsSource) {
         assertThat(stepsFactory).isNull();
         stepsFactory = new InstanceStepsFactory(configuration(), stepsSource);
+        System.out.println("usingStepsFrom::::"+stepsFactory);
         return this;
     }
 

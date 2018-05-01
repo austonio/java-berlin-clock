@@ -16,7 +16,7 @@ public class BerlinClockFixture {
     private TimeConverter berlinClock;
     private String theTime;
 
-    @Test
+    /*@Test
     public void berlinClockAcceptanceTests() throws Exception {
         aBehaviouralTestRunner()
                 .usingStepsFrom(this)
@@ -32,5 +32,5 @@ public class BerlinClockFixture {
     @Then("the clock should look like $")
     public void thenTheClockShouldLookLike(String theExpectedBerlinClockOutput) {
         assertThat(berlinClock.convertTime(theTime)).isEqualTo(theExpectedBerlinClockOutput);
-    }
+    }*/
 }

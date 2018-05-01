@@ -3,9 +3,18 @@ defaultTasks 'clean', 'build'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'jacoco'
+
+applicationName = 'java-berlin-clock'
+
+mainClassName = "com.ubs.opsit.interviews.BerlinClockMain"
 
 version = '1.0-SNAPSHOT'
 group = 'org.suggs.interviews.berlinclock'
+
+sourceCompatibility = 1.8
+
 
 task wrapper(type: Wrapper){
     description = 'Generates gradlew scripts for NIX and win envs'
@@ -34,3 +43,24 @@ dependencies {
             'commons-io:commons-io:2.4',
             'org.jbehave:jbehave-core:3.8'
 }
+
+task(runSimple, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.ubs.opsit.interviews.BerlinClockMain'
+    classpath = sourceSets.main.runtimeClasspath
+    args "09:40:01"
+   /* if (project.hasProperty("appArgs")) {
+        args Eval.me(appArgs)
+    }*/
+}
+ 
+defaultTasks 'runSimple'
+
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
